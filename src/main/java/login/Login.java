@@ -36,7 +36,7 @@ public class Login extends HttpServlet {
 		try {
 			conn = DatabaseManager.getConnection();
 			
-			String sql = "SELECT * FROM member_info WHERE id = ? AND pw = ?";
+			String sql = "SELECT * FROM member_info WHERE memberID = ? AND memberPW = ?";
 			
 			pstmt = DatabaseManager.getPreparedStatment(conn, sql);
 			pstmt.setString(1, loginInfo.getId());
