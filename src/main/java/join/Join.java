@@ -70,6 +70,8 @@ public class Join extends HttpServlet {
 			response.setStatus(HttpServletResponse.SC_OK);
 		} catch (SQLException e) {
 			e.printStackTrace();
+			response.setStatus(HttpServletResponse.SC_CONFLICT);
+
 		} finally {
 			DatabaseManager.closeResultSet(rs);
 			
