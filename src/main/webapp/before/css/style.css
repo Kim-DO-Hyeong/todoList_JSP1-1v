@@ -1,0 +1,13 @@
+.container {
+    max-width: 100%;
+}
+#header_wrapper {
+    height: 77px;
+}
+.bi-card-checklist, .bi-activity, .bi-activity + span, .bi-bell, .bi-person-circle {
+    font-size: 30px;
+    color: white;
+}
+.bi-card-checklist {
+     margin-right: 10px;
+}

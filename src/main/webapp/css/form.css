@@ -1,0 +1,53 @@
+/* container */
+.container {
+    padding: 0;
+}
+
+.container main {
+    padding: 30px;
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+/* container */
+
+main .item {
+    width: 100%;
+    display: flex;
+    justify-content: center;
+}
+
+input[type="date"] {
+    border: none;
+    width: 200px;
+}
+
+.line {
+    width: 100%;
+}
+
+.todoTitle, .todoContents, .todoAdd, .todoAdd button, .todoProject {
+    width: 420px;
+}
+
+.todoProject {
+    margin-top: 8px;
+    margin-bottom: 10px;
+}
+
+.todoTitle {
+    margin-bottom: 10px;
+}
+
+.todoContents {
+    margin-bottom: 10px;
+}
+
+.todoContents textarea {
+    height: 300px;
+    resize: none;
+}
+
+
+

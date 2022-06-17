@@ -1,0 +1,175 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Todo List</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.8.1/font/bootstrap-icons.css">
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="css/side.css">
+    <link rel="stylesheet" href="css/calendar.css">
+</head>
+<body>
+    <header>
+        <div class="px-3 py-2 bg-dark text-white" id="header_wrapper">
+          <div class="container">
+            <div class="d-flex flex-wrap align-items-center justify-content-center justify-content-lg-start">
+                <a href="/" class="d-flex align-items-center mb-3 mb-md-0 me-md-auto text-white text-decoration-none">
+                    <i class="bi bi-card-checklist"></i>
+                    <span class="fs-4">Todo List Service</span>
+                </a>
+
+                <ul class="nav col-12 col-lg-auto my-2 justify-content-center my-md-0 text-small">
+                  <li>
+                    <a href="#" class="nav-link text-secondary">
+                      <i class="bi bi-activity"></i>
+                      <span>0/5</span>
+                    </a>
+                  </li>
+                  <li>
+                    <a href="#" class="nav-link text-white">
+                      <i class="bi bi-bell"></i>
+                    </a>
+                  </li>
+                  <li>
+                    <a href="#" class="nav-link text-white">
+                      <i class="bi bi-person-circle"></i>
+                    </a>
+                  </li>
+                </ul>
+            </div>
+          </div>
+        </div>
+      </header>
+
+      <div class="container d-flex">
+        <div class="d-flex flex-column flex-shrink-0 p-3 text-white bg-dark" id="side_menu" style="width: 400px;">
+          <ul class="nav nav-pills flex-column mb-auto">
+            <li class="nav-item">
+              <a href="index-today.html" class="nav-link text-white">
+                <i class="bi bi-calendar-plus"></i>
+                오늘
+              </a>
+            </li>
+            <li class="nav-item">
+              <a href="index-calendar.html" class="nav-link text-white active">
+                <i class="bi bi-table"></i>
+                달력
+              </a>
+            </li>
+  
+            <li>
+              <hr>
+            </li>
+  
+            <li class="nav-item">
+              <a href="index-project.html" class="nav-link text-white">
+                <i class="bi bi-list"></i>
+                프로젝트
+              </a>
+            </li>
+            <li>
+              <ul class="list-group">
+                <li class="list-group-item d-flex justify-content-between align-items-center">
+                  <a href="#">
+                    <i class="bi bi-arrow-return-right"></i>
+                    프로젝트1
+                  </a>
+                  <span class="badge bg-primary rounded-pill">14</span>
+                </li>
+                <li class="list-group-item d-flex justify-content-between align-items-center">
+                  <a href="#">
+                    <i class="bi bi-arrow-return-right"></i>
+                    프로젝트2
+                  </a>
+                  <span class="badge bg-primary rounded-pill">2</span>
+                </li>
+                <li class="list-group-item d-flex justify-content-between align-items-center">
+                  <a href="#">
+                    <i class="bi bi-arrow-return-right"></i>
+                    프로젝트3
+                  </a>
+                  <span class="badge bg-primary rounded-pill">1</span>
+                </li>
+              </ul>
+            </li>
+          </ul>
+        </div>
+
+          <main>
+            <div class="cal container">
+                <div class="cal-month">
+                    <button class="btn cal-btn" id="leftArrow" type="button">
+                        <i class="bi bi-arrow-left"></i>
+                    </button>
+                    <strong class="cal-month-name">2022년 1월</strong>
+                    <button class="btn cal-btn" id="rightArrow" type="button">
+                        <i class="bi bi-arrow-right"></i>
+                    </button>
+                </div>
+                <div class="cal-weekdays text-muted">
+                    <div class="cal-weekday">일</div>
+                    <div class="cal-weekday">월</div>
+                    <div class="cal-weekday">화</div>
+                    <div class="cal-weekday">수</div>
+                    <div class="cal-weekday">목</div>
+                    <div class="cal-weekday">금</div>
+                    <div class="cal-weekday">토</div>
+                </div>
+                <div class="cal-days">
+                    <div class="cal-btn" disabled="">30</div>
+                    <div class="cal-btn" disabled="">31</div>
+            
+                    <div class="cal-btn">
+                        <div class="day-name">1</div>
+                        <div class="day-btn-group">
+                            <button type="button" class="btn btn-success">0</button>
+                            <button type="button" class="btn btn-primary">1</button>
+                            <button type="button" class="btn btn-secondary">2</button>
+                        </div>
+                    </div>
+                    <div class="cal-btn">2</div>
+                    <div class="cal-btn">3</div>
+                    <div class="cal-btn">4</div>
+                    <div class="cal-btn">5</div>
+                    <div class="cal-btn">6</div>
+                    <div class="cal-btn">7</div>
+
+                    <div class="cal-btn">8</div>
+                    <div class="cal-btn">9</div>
+                    <div class="cal-btn">10</div>
+                    <div class="cal-btn">11</div>
+                    <div class="cal-btn">12</div>
+                    <div class="cal-btn">13</div>
+                    <div class="cal-btn">14</div>
+            
+                    <div class="cal-btn">15</div>
+                    <div class="cal-btn">16</div>
+                    <div class="cal-btn">17</div>
+                    <div class="cal-btn">18</div>
+                    <div class="cal-btn">19</div>
+                    <div class="cal-btn">20</div>
+                    <div class="cal-btn">21</div>
+            
+                    <div class="cal-btn">22</div>
+                    <div class="cal-btn">23</div>
+                    <div class="cal-btn">24</div>
+                    <div class="cal-btn">25</div>
+                    <div class="cal-btn">26</div>
+                    <div class="cal-btn">27</div>
+                    <div class="cal-btn">28</div>
+            
+                    <div class="cal-btn">29</div>
+                    <div class="cal-btn">30</div>
+                    <div class="cal-btn">31</div>
+                </div>
+            </div>
+          </main>
+      </div>
+      
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p" crossorigin="anonymous"></script>
+</body>
+</html>
+

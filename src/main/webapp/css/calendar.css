@@ -1,0 +1,82 @@
+/* container */
+.container {
+    padding: 0;
+}
+
+.container main {
+    padding: 30px;
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+/* container */
+
+.cal-month,
+.cal-days,
+.cal-weekdays {
+  display: grid;
+  grid-template-columns: repeat(7, 1fr);
+  align-items: center;
+}
+
+#leftArrow, #rightArrow, .cal-month-name {
+    font-size: 25px;
+}
+
+#leftArrow {
+  grid-column-start: 3;
+  grid-column-end: 3;
+}
+
+.cal-month-name {
+  grid-column-start: 4;
+  grid-column-end: 4;
+  text-align: center;
+  line-height: 1.8;
+}
+
+.cal-month > .btn, .cal-month > .cal-month-name {
+  height: 48px;
+}
+.cal-month > .btn {
+  justify-content: center;
+}
+
+.cal-weekday,
+.cal-btn {
+  display: flex;
+  flex-shrink: 0;
+  align-items: center;
+  height: 3rem;
+  padding: 0;
+}
+.cal-btn:not([disabled]) {
+  font-weight: 500;
+}
+.cal-btn:hover,
+.cal-btn:focus {
+  background-color: rgba(0, 0, 0, .05);
+}
+.cal-btn[disabled] {
+  opacity: .5;
+}
+
+.cal-days .cal-btn {
+  height: 80px;
+  width: 150px;
+  margin: 10px 10px 0 0;
+  font-size: 25px;
+}
+
+.cal-days .cal-btn {
+    flex-direction: column;
+    align-items: flex-start;
+}
+
+.cal-days .day-btn-group button {
+    width: 47px;
+    margin-right: -6px;
+}
+
+
