@@ -48,6 +48,9 @@ public class ProjectAdd extends HttpServlet {
 			
 		}catch(SQLException e) {
 			e.printStackTrace();
+		}finally {
+			DatabaseManager.closePstmt(pstmt);
+			DatabaseManager.closeConnection(conn);
 		}
 		// 프로젝트 페이지로 이동을 지시
 		response.sendRedirect("http://localhost/todolist/index-project.html");

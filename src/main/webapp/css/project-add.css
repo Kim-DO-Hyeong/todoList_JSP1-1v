@@ -22,7 +22,7 @@ main .item {
     width: 100%;
 }
 
-.projectTitle, .projectAdd button {
+.projectTitle, .projectAdd button, .projectDelete button {
     width: 420px;
 }
 

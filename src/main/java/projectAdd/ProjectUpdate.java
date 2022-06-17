@@ -1,6 +1,10 @@
 package projectAdd;
 
 import java.io.IOException;
+import java.sql.Connection;
+import java.sql.PreparedStatement;
+import java.sql.SQLException;
+import java.time.LocalDateTime;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -8,32 +12,50 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import util.DatabaseManager;
+
 @WebServlet("/project/update")
 public class ProjectUpdate extends HttpServlet {
 	
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		System.out.println("프로젝트 수정 기능 시작");
 		
 		request.setCharacterEncoding("UTF-8");
 		
 		// 전달 받은 값을 꺼낸다.
+		int projectNumber = Integer.parseInt(request.getParameter("projectNumber"));
 		String projectName = request.getParameter("projectName");
-		
-		System.out.println("projectName = " + projectName);
 		
 		// 전달 받은 값을 하나의 프로젝트 정보로 구성한다.
 		ProjectInfo projectInfo = new ProjectInfo(projectName);
+		projectInfo.setProjectNumber(projectNumber);
 		
-		System.out.println("전달 받은 값을 하나의 프로젝트 정보로 구성했음");
 		
 		// 기존의 프로젝트 정보를 새로운 프로젝트 정보로 변경한다.
 		
-		System.out.println("기존의 프로젝트 정보를 새로운 프로젝트 정보로 변경한다.");
+		Connection conn = null;
+		PreparedStatement pstmt = null;
+		
+		// 프로젝트 정보를 저장하는 테이블에 프로젝트 정보를 저장한다.
+		try {
+			conn = DatabaseManager.getConnection();
+			
+			String sql = "UPDATE project_info SET NAME = ? WHERE projectNumber = ?;";
+			pstmt = DatabaseManager.getPreparedStatment(conn, sql);
+			pstmt.setString(1, projectInfo.getProjectName());
+			pstmt.setInt(2, projectNumber);
+			
+			pstmt.executeUpdate();
+			
+		}catch(SQLException e) {
+			e.printStackTrace();
+		}finally {
+			DatabaseManager.closePstmt(pstmt);
+			DatabaseManager.closeConnection(conn);
+		}
 		
 		// 프로젝트 페이지로 이동을 지시
 		response.sendRedirect("http://localhost/todolist/index-project.html");
 		
-		System.out.println("프로젝트 수정 기능 종료");
 	}
 
 }
