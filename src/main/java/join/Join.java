@@ -51,7 +51,7 @@ public class Join extends HttpServlet {
 				return ;
 			}
 			
-			sql = "INSERT INTO member_info(id, pw, name, joinDate) VALUES(?, ?, ?, ?)";
+			sql = "INSERT INTO member_info(memberID, memberPW, name, joinDate) VALUES(?, ?, ?, ?)";
 			
 			// 4. 쿼리를 실행하고 결과를 가져올 객체 생성
 			insertPstmt = DatabaseManager.getPreparedStatment(conn, sql);
