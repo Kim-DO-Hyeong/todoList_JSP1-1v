@@ -40,7 +40,7 @@ public class Join extends HttpServlet {
 			conn = DatabaseManager.getConnection();
 			
 			// 3. 실행할 쿼리 작성
-			String sql = "SELECT * FROM member_info WHERE id = ?";
+			String sql = "SELECT * FROM member_info WHERE memberID = ?";
 			
 			selectPstmt = DatabaseManager.getPreparedStatment(conn, sql);
 			selectPstmt.setString(1, newMemberInfo.getId());

@@ -14,7 +14,7 @@ public class DatabaseManager {
 		try {
 			Class.forName("org.mariadb.jdbc.Driver");
 			
-			conn = DriverManager.getConnection("jdbc:mariadb://localhost:3306/todolist?user=root&password=0000");
+			conn = DriverManager.getConnection("jdbc:mariadb://localhost:3306/todolist?user=root&password=1234");
 		} catch (ClassNotFoundException e) {
 			e.printStackTrace();
 		} catch (SQLException e) {
