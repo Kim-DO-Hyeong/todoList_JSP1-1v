@@ -10,7 +10,9 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
+import join.MemberInfo;
 import util.DatabaseManager;
 
 @WebServlet("/project/delete")
@@ -25,12 +27,16 @@ public class ProjectDelete extends HttpServlet {
 		
 		// 프로젝트 정보를 저장하는 테이블에 프로젝트 정보를 저장한다.
 		try {
+			
+			HttpSession session = request.getSession();
+			MemberInfo loginUserInfo = (MemberInfo) session.getAttribute("loginUserInfo");
+			
 			conn = DatabaseManager.getConnection();
 			
-			String sql = "DELETE FROM project_info WHERE projectNumber = ?";
+			String sql = "DELETE FROM project_info WHERE projectNumber = ? AND memberNumber = ?";
 			pstmt = DatabaseManager.getPreparedStatment(conn, sql);
 			pstmt.setInt(1, projectNumber);
-			
+			pstmt.setInt(2, loginUserInfo.getMemberNumber());
 			pstmt.executeUpdate();
 			
 		}catch(SQLException e) {

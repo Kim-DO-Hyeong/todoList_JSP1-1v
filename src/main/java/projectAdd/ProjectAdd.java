@@ -4,7 +4,6 @@ import java.io.IOException;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.SQLException;
-import java.time.LocalDate;
 import java.time.LocalDateTime;
 
 import javax.servlet.ServletException;
@@ -12,7 +11,9 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
+import join.MemberInfo;
 import util.DatabaseManager;
 
 @WebServlet("/project/add")
@@ -36,13 +37,18 @@ public class ProjectAdd extends HttpServlet {
 		
 		// 프로젝트 정보를 저장하는 테이블에 프로젝트 정보를 저장한다.
 		try {
+			HttpSession session = request.getSession();
+			MemberInfo loginUserInfo = (MemberInfo) session.getAttribute("loginUserInfo");
+			
 			conn = DatabaseManager.getConnection();
 			
-			String sql = "INSERT INTO project_info(name,registerDate) VALUES(?,?)";
+			String sql = "INSERT INTO project_info(memberNumber,name,registerDate) VALUES(?,?,?)";
 			pstmt = DatabaseManager.getPreparedStatment(conn, sql);
 			
-			pstmt.setString(1, newProjectInfo.getProjectName());
-			pstmt.setString(2, LocalDateTime.now().toString());
+			
+			pstmt.setInt(1, loginUserInfo.getMemberNumber());
+			pstmt.setString(2, newProjectInfo.getProjectName());
+			pstmt.setString(3, LocalDateTime.now().toString());
 			
 			pstmt.executeUpdate();
 			

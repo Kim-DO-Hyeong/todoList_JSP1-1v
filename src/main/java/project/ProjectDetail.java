@@ -14,9 +14,11 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 import org.json.JSONObject;
 
+import join.MemberInfo;
 import projectAdd.ProjectInfo;
 import util.DatabaseManager;
 
@@ -31,11 +33,15 @@ public class ProjectDetail extends HttpServlet {
 		ResultSet rs = null;
 		
 		try {
+			HttpSession session = request.getSession();
+			MemberInfo loginUserInfo = (MemberInfo) session.getAttribute("loginUserInfo");
+			
 			conn = DatabaseManager.getConnection();
 			
-			String sql =  "SELECT * FROM project_info WHERE projectNumber = ?";
+			String sql =  "SELECT * FROM project_info WHERE projectNumber = ? AND projectNumber =?";
 			pstmt = DatabaseManager.getPreparedStatment(conn, sql);
 			pstmt.setInt(1, projectNumber);
+			pstmt.setInt(2, loginUserInfo.getMemberNumber());
 			
 			rs = pstmt.executeQuery();
 			

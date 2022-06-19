@@ -16,10 +16,12 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 import org.json.JSONArray;
 import org.json.JSONObject;
 
+import join.MemberInfo;
 import projectAdd.ProjectInfo;
 import util.DatabaseManager;
 
@@ -38,14 +40,21 @@ public class ProjectList extends HttpServlet {
 		PreparedStatement pstmt = null;
 		ResultSet rs= null;
 		try {
+			HttpSession session = request.getSession();
+			MemberInfo loginUserInfo = (MemberInfo) session.getAttribute("loginUserInfo");
+			
+			
 			conn = DatabaseManager.getConnection();
 			
-			String sql = "SELECT * FROM project_info";
+			String sql = "SELECT * FROM project_info WHERE memberNumber = ?";
 			pstmt=DatabaseManager.getPreparedStatment(conn, sql);
+			pstmt.setInt(1, loginUserInfo.getMemberNumber());
 			
 			rs=pstmt.executeQuery();
 			
 			JSONArray jsonArray = new JSONArray();
+			
+			
 			
 			while(rs.next()) {
 				String projectName = rs.getString("name");
@@ -67,11 +76,23 @@ public class ProjectList extends HttpServlet {
 				jsonArray.put(jsonObject);
 			}
 			
-			response.setContentType("application/json;charset=UTF-8");
-			PrintWriter output = response.getWriter();
 			
-			output.print(jsonArray);
-			output.close();
+			
+			
+			
+			
+			if(jsonArray.length() == 0) {
+				response.setStatus(HttpServletResponse.SC_NO_CONTENT);
+			}else {
+				response.setContentType("application/json;charset=UTF-8");
+				PrintWriter output = response.getWriter();
+				
+				output.print(jsonArray);
+				output.close();
+				
+			}
+			
+			
 			
 		}catch(SQLException e) {
 			e.printStackTrace();

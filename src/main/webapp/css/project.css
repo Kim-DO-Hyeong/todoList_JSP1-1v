@@ -12,6 +12,9 @@
 }
 /* container */
 
+.display-none{
+	display:none;
+}
 /* 프로젝트 추가 */
 main .item {
     width: 210px;

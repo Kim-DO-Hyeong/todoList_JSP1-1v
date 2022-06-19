@@ -106,7 +106,7 @@
             </a>
           </div>
           
-          <div class="item-list empty">
+          <div class="item-list empty display-none">
             <div class="text1 h4">등록된 프로젝트가 없습니다</div>
             <div class="text2 h2"><i class="bi bi-flag"></i>&nbsp;&nbsp;프로젝트를 추가해보세요~!</div>
           </div>
@@ -125,27 +125,27 @@
 			url:"/todolist/project/list",
 			type:"GET",
 			success:function(projectInfoList){
-				let colorList =["primary","secondary","success","danger","warning","info","light","dark"];
-				let colorIndex=0;
+				if(projectInfoList == undefined){
+					$(".empty").removeClass("display-none");
+				}else{
+					let colorList =["primary","secondary","success","danger","warning","info","light","dark"];
+					let colorIndex=0;
 				
 				
-				console.log(projectInfoList.length);
-				console.log(projectInfoList);
-				for(let i =0; i < projectInfoList.length; i++){
-					let projectInfo = projectInfoList[i];
-					let color = colorList[colorIndex++];
-					colorIndex = colorIndex % colorList.length;
-					
-					
-					let tag = "<li class=\"list-group-item h3\"><a href=\"/todolist/index-project-add.html?idx="+projectInfo.projectNumber+"\" class=\"todoInfo\"><span class=\"badge bg-"+color+"\">"+projectInfo.projectName+"</span></a></li>";
-					$(".item-list .list-group").append(tag);
+					for(let i =0; i < projectInfoList.length; i++){
+						let projectInfo = projectInfoList[i];
+						let color = colorList[colorIndex++];
+						colorIndex = colorIndex % colorList.length;
+						
+						
+						let tag = "<li class=\"list-group-item h3\"><a href=\"/todolist/index-project-add.html?idx="+projectInfo.projectNumber+"\" class=\"todoInfo\"><span class=\"badge bg-"+color+"\">"+projectInfo.projectName+"</span></a></li>";
+						$(".item-list .list-group").append(tag);
+					}
 				}
-				
-				
-				
-			
 			},
-			error:function(){}
+			error:function(){
+				alert("X");
+			}
 		});
 	</script>
 </body>
